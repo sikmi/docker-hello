@@ -1,0 +1,47 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "authentication": {
+    "bucket": "xxxxx",
+    "key": "xxxxx"
+  },
+  "containerDefinitions": [
+    {
+	"name": "rails_sample",
+    "image" : "sikmi/rails_sample:<TAG>",
+   "memory": 300,
+      "environment": [
+        {
+          "name": "XXXXX",
+          "value": "xxxxx"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "containerPort": 3000,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    {
+	"name": "nginx-sample",
+    "image" : "sikmi/nginx-sample:develop",
+    "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80,
+          "protocol": "tcp"
+        },
+        {
+          "hostPort": 443,
+          "containerPort": 443,
+          "protocol": "tcp"
+        }
+      ],
+      "links": [
+        "rails_sample:rails"
+      ]
+    }
+    ] 
+}
